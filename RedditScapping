@@ -1,0 +1,60 @@
+#! python3
+import praw             # PRAW is a Reddit API wrapper used by python.
+import pandas as pd     #pandas is used to organize the data
+import datetime as dt
+
+#connect to reddit using praw.reddit.
+#Go to the app section of Reddit preference to create an app that will give a unique private id and a secret id.
+
+reddit = praw.Reddit(client_id='Private ID', \
+                     client_secret='Secret ID', \
+                     user_agent='Lulu Scraping Project', \
+                     username='Luluredditscraping', \
+                     password='PASSWORD')
+
+# PRAW allows to pull from five different filters from Reddit. 
+
+subreddit = reddit.subreddit('Cats')
+top_subreddit = subreddit.top(limit=500)
+
+
+for submission in subreddit.top(limit=1):
+    print(submission.title, submission.id)
+    
+#To store the data
+topics_dict = { "title":[], \
+                "score":[], \
+                "id":[], "url":[], \
+                "comms_num": [], \
+                "created": [], \
+                "body":[]}
+                
+for submission in top_subreddit:
+    topics_dict["title"].append(submission.title)
+    topics_dict["score"].append(submission.score)
+    topics_dict["id"].append(submission.id)
+    topics_dict["url"].append(submission.url)
+    topics_dict["comms_num"].append(submission.num_comments)
+    topics_dict["created"].append(submission.created)
+    topics_dict["body"].append(submission.selftext)
+    
+# Using pandas to make the data easier to read
+topics_data = pd.DataFrame(topics_dict)
+
+# Add a timestamp when the post/data was originally created
+def get_date(created):
+    return dt.datetime.fromtimestamp(created)
+    
+_timestamp = topics_data["created"].apply(get_date)
+
+topics_data = topics_data.assign(timestamp = _timestamp)
+
+#To excute
+topics_data
+    
+    
+
+                
+#Inspired by Felippe Rodrigues
+
+#Orginally Created 10/2021
