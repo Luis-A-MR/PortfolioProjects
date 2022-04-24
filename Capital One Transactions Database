@@ -1,0 +1,700 @@
+-- Originally Created January 2022
+-- Manually Added personal transaction from Capital One to pratice PostgreSQL and Tableau Visualizations
+
+CREATE TABLE Capital_Transations (
+transation_id serial PRIMARY KEY NOT NULL smallint,
+item NULL varchar(255),
+amount NULL decimal(7,2),
+merchant NULL varchar(255),
+address NULL varchar(255),
+purchased_date DATE NOT NULL
+)
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('dining' , 61.00, 'Joy Noodles', 'West Palm Beach', '2020-02-01'),
+    ('merchandise' , 49.18, 'Target', 'West Palm Beach', '2020-02-01'),
+    ('merchandise' , 28.99, 'Amazon', 'NULL', '2020-02-02'),
+    ('merchandise' , 73.34, 'Target', 'West Palm Beach', '2020-02-02'),
+    ('grocery' , 8.27, 'Publix', 'West Palm Beach', '2020-02-02'),
+    ('merchandise' , 35.99, 'Amazon', 'NULL', '2020-02-03'),
+    ('merchandise' , 49.19, 'Target', 'Miami', '2020-02-04'),
+    ('merchandise' , 17.11, 'Target', 'Miami', '2020-02-04'),
+    ('merchandise' , 89.03, 'Amazon', 'NULL', '2020-02-06'),
+    ('gasoline' , 27.20, 'Marathon', 'Miami', '2020-02-07'),
+    ('boba' , 25.36, 'Teajito', 'Miami', '2020-02-07'),
+    ('parking' , 1.00, 'FIU', 'Miami', '2020-02-08'),
+    ('dining' , 57.00, 'Zabb Thai', 'Davie', '2020-02-08'),
+    ('merchandise' , 71.86, 'Amazon', 'NULL', '2020-02-09'),
+    ('merchandise' , 16.98, 'Amazon', 'NULL', '2020-02-09'),
+    ('grocery' , 7.12, 'Publix', 'Miami', '2020-02-09'),
+    ('merchandise' , 12.81, 'Amazon', 'NULL', '2020-02-13'),
+    ('merchandise' , 16.05, 'Amazon', 'NULL', '2020-02-14');
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('gasoline' , 22.90, 'Marathon', 'Miami', '2020-02-14'),
+('grocery' , 21.68, 'Whole Foods', 'West Palm Beach', '2020-02-14'),
+('parking' , 1.00, 'City of West Palm Beach', 'West Palm Beach', '2020-02-15'),
+('grocery' , 29.22, 'Whole Foods', 'West Palm Beach', '2020-02-15'),
+('merchandise' , 77.48, 'Target', 'West Palm Beach', '2020-02-15'),
+('dining' , 17.86, 'Chick-Fil-A', 'West Palm Beach', '2020-02-15'),
+('merchandise' , 6.62, 'Amazon', NULL, '2020-02-16'),
+('boba' , 14.18, 'Sugar Milk', 'West Palm Beach', '2020-02-16'),
+('dining' , 39.00, 'Kapow Noodle bar', 'West Palm Beach', '2020-02-17'),
+('merchandise' , 9.99, 'Amazon', NULL, '2020-02-20'),
+('gasoline' , 27.60, 'Marathon', 'Miami', '2020-02-20'),
+('boba' , 7.22, 'Teajito', 'Miami', '2020-02-22'),
+('dining' , 42.13, 'Bonsai Thai & Sushi', 'Miami', '2020-02-22'),
+('health care' , 22.00, 'Hair Cuttery', 'Miami', '2020-02-23'),
+('internet' , 9.99, 'Spotify', NULL, '2020-02-23'),
+('merchandise' , 19.94, 'Amazon', NULL, '2020-02-23'),
+('boba' , 24.34, 'Teajito', 'Miami', '2020-02-23'),
+('merchandise' , 94.10, 'Amazon', NULL, '2020-02-26'),
+('gasoline' , 13.75, 'Marathon', 'Miami', '2020-02-28'),
+('merchandise' , 44.44, 'Etsy', NULL, '2020-02-28'),
+('dining' , 11.77, 'Zipitios', 'West Palm Beach', '2020-02-28'),
+('boba' , 13.38, 'Sugar Milk', 'West Palm Beach', '2020-02-28'),
+('merchandise' , 74.51, 'Target', 'West Palm Beach', '2020-02-29'),
+('boba' , 11.24, 'Art of Boba', 'West Palm Beach', '2020-02-29'),
+('dining' , 24.00, 'Lynora', 'West Palm Beach', '2020-02-29'),
+('keycaps' , 85.99, 'Dwarf Factory', NULL, '2020-03-03'),
+('boba' , 13.11, 'Teajito', 'Miami', '2020-03-05'),
+('boba' , 13.11, 'Teajito', 'Miami', '2020-03-06'),
+('grocery' , 25.31, 'Publix', 'Miami', '2020-03-06'),
+('gasoline' , 36.41, 'Marathon', 'Miami', '2020-03-07'),
+('boba' , 13.11, 'Teajito', 'Miami', '2020-03-07'),
+('dining' , 53.00, 'Hi-Pot', 'Miami', '2020-03-07'),
+('keyboard' , 168.06, 'Dixie Mech', NULL, '2020-03-08'),
+('dining' , 20.79, 'KOW Comfort', 'Miami', '2020-03-08'),
+('merchandise' , 7.99, 'Amazon', 'Miami', '2020-03-11'),
+('gasoline' , 14.50, 'Marathon', 'Miami', '2020-03-12'),
+('merchandise' , 34.55, 'Critical Role', NULL, '2020-03-13'),
+('dining' , 23.61, 'Bolay', 'West Palm Beach', '2020-03-13'),
+('payment' , 516.11, 'Capital One', NULL, '2020-02-27')
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('boba' , 14.18, 'Sugar Milk', 'West Palm Beach', '2020-03-13'),
+('merchanidise' , 18.79, 'Target', 'West Palm Beach', '2020-03-14'),
+('dining' , 19.79, 'Jimmy Changas', 'West Palm Beach', '2020-03-14'),
+('dining' , 24.00, 'Joy Noodles', 'West Palm Beach', '2020-03-15'),
+('boba' , 11.77, 'Art of Boba', 'West Palm Beach', '2020-03-15'),
+('dining' , 10.58, 'Jupiter Donuts', 'West Palm Beach', '2020-03-16'),
+('keyboard' , 38.26, 'Dixie Mech', NULL, '2020-03-16'),
+('airfare' , 120.80, 'American Airline', NULL, '2020-03-17'),
+('airfare' , 22.75, 'Allianz Travel', NULL, '2020-03-18'),
+('merchanidise' , 37.73, 'Banana Republic', NULL, '2020-03-18'),
+('gasoline' , 19.15, 'Marathon', 'Miami', '2020-03-19'),
+('dining' , 40.00, '2 Chef Soup', 'Lake Worth', '2020-03-20'),
+('internet' , 48.00, 'Uber Eats', NULL, '2020-03-22'),
+('dining' , 6.53, 'Jupiter Donuts', 'West Palm Beach', '2020-03-23'),
+('internet' , 9.99, 'Spotify', NULL, '2020-03-23'),
+('merchanidise' , 39.06, 'BJs Wholesale', 'Miami', '2020-03-23'),
+('entertainment' , 327.40, 'GameStop', NULL, '2020-03-25'),
+('gasoline' , 22.10, 'Marathon', 'Miami', '2020-03-26'),
+('merchanidise' , 64.19, 'Target', 'West Palm Beach', '2020-03-27'),
+('entertainment' , 85.59, 'Best Buy', 'West Palm Beach', '2020-03-28'),
+('merchanidise' , 25.61, 'Amazon', NULL, '2020-03-29'),
+('boba' , 8.03, 'Teajito', 'Miami', '2020-03-30'),
+('merchanidise' , 53.49, 'Target', 'Miami', '2020-03-30'),
+('boba' , 18.79, 'Teajito', 'Miami', '2020-04-03'),
+('dining' , 87.00, 'Bonsai Thai & Sushi', 'Miami', '2020-04-03'),
+('dining' , 28.83, 'Taco Bell', 'Miami', '2020-04-04'),
+('gasoline' , 34.10, 'Marathon', 'Miami', '2020-04-05'),
+('parking' , 4.00, 'Economy Park Ride', 'Doral', '2020-04-05'),
+('health care' , 48.14, 'Crest', NULL, '2020-04-08'),
+('entertainment' , 14.99, 'Nintendo', NULL, '2020-04-09'),
+('merchanidise' , 41.72, 'Amazon', NULL, '2020-04-09'),
+('merchanidise' , 22.46, 'Amazon', NULL, '2020-04-12'),
+('merchanidise' , 16.97, 'Amazon', NULL, '2020-04-12'),
+('merchanidise' , 17.99, 'Amazon', NULL, '2020-04-13'),
+('payment' , 702.63, 'Capital One', NULL, '2020-03-15'),
+('payment' , 1067.79, 'Capital One', NULL, '2020-04-02'),
+('payment' , 85.59, 'Best Buy', NULL, '2020-04-05')
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('merchandise' , 47.74, 'Amazon', NULL, '2020-04-15'),
+('gasoline' , 19.65, 'Marathon', 'Miami', '2020-04-15'),
+('boba' , 12.04, 'Teajito', 'Miami', '2020-04-17'),
+('merchandise' , 23.99, 'Amazon', NULL, '2020-04-17'),
+('airfare' , 169.40, 'American Airline', NULL, '2020-04-17'),
+('merchandise' , 24.88, 'Amazon', NULL, '2020-04-18'),
+('entertainment' , 139.09, 'Best Buy','Miami' ,'2020-04-18'),
+('merchandise' , 15.99, 'Amazon', NULL, '2020-04-22'),
+('internet' , 9.99, 'Spotify', NULL, '2020-04-23'),
+('merchandise' , 46.70, 'Amazon', NULL, '2020-04-24'),
+('gasoline' , 18.95, 'Marathon', 'Miami', '2020-04-29'),
+('plushie' , 45.39, 'Cute Dose', NULL, '2020-04-30'),
+('UScustom' , 100.00, 'US Custom', NULL, '2020-04-30'),
+('boba' , 12.04, 'Teajito', 'Miami', '2020-05-06'),
+('clothing' , 79.95, 'Uniqlo', NULL, '2020-05-07'),
+('learning' , 179.00, 'Magoosh', NULL, '2020-05-11'),
+('merchandise' , 28.13, 'Amazon', NULL, '2020-05-13'),
+('payment' , 308.91, 'Capital One', NULL, '2020-04-18'),
+('payment' , 442.08, 'Capital One', NULL, '2020-04-30'),
+('payment' , 53.49, 'Target', 'Miami', '2020-05-02'),
+('payment' , 381.84, 'Capital One', NULL, '2020-05-14')
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('gasoline' , 16.45, 'Marathon', 'Miami', '2020-05-13'),
+('merchandise' , 21.89, 'Amazon', NULL, '2020-05-15'),
+('merchandise' , 13.35, 'Amazon', NULL, '2020-05-18'),
+('internet' , 9.99, 'Spotify', NULL, '2020-05-23'),
+('gasoline' , 15.95, 'Marathon', 'Miami', '2020-05-27'),
+('merchandise' , 46.47, 'Amazon', NULL, '2020-05-29'),
+('merchandise' , 40.00, 'Amazon', NULL, '2020-05-29'),
+('boba' , 7.22, 'Teajito', 'Miami', '2020-06-05'),
+('merchandise' , 29.09, 'Amazon', NULL, '2020-06-06'),
+('skincare' , 20.76, 'Timeless', NULL, '2020-06-08'),
+('gasoline' , 17.55, 'Marathon', 'Miami', '2020-06-10'),
+('payment' , 89.81, 'Capital One', NULL, '2020-05-29')
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('grocery' , 23.46, 'Walgreens', 'Miami, Florida', '2020-06-13'),
+('keycaps' , 65.00, 'The Key', NULL, '2020-06-20'),
+('merchandise' , 21.98, 'Amazon', NULL, '2020-06-21'),
+('merchandise' , 43.26, 'Amazon', NULL, '2020-06-22'),
+('GRE exam' , 205.00, 'ETS GRE', 'New Jersery', '2020-06-22'),
+('internet' , 9.99, 'Spotify', 'New York', '2020-06-23'),
+('gasoline' , 19.75, 'Marathon', 'Miami, Florida', '2020-06-24'),
+('airfare' , 95.00, 'American Airline', 'Fort Worth, Texas', '2020-06-29'),
+('games' , 26.99, 'Steam', NULL, '2020-06-30'),
+('keyboard' , 109.00, 'Mechanical Keyboards', 'Tennessee', '2020-07-06'),
+('mask' , 46.58, 'Cambridge Mask', NULL, '2020-07-06'),
+('airfare' , 65.00, 'American Airline', 'Fort Worth, Texas', '2020-07-07'),
+('gasoline' , 16.65, 'Marathon', 'Miami', '2020-07-08'),
+('merchandise' , 119.94, 'Amazon', 'Washington', '2020-07-10'),
+('grocery' , 26.50, 'Publix', 'Miami, Florida', '2020-07-11'),
+('merchandise' , 32.80, 'Amazon', 'Washington', '2020-07-12'),
+('dining' , 12.91, 'IceBox Cafe', 'Miami, Florida', '2020-07-13'),
+('payment' , 177.04, 'Capital One', NULL, '2020-06-15'),
+('payment' , 388.44, 'Capital One', NULL, '2020-06-28'),
+('payment' , 342.57, 'Capital One', NULL, '2020-07-10')
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('merchandise' , 20.99, 'Amazon', NULL, '2020-07-11'),
+('dining' , 12.65, 'Roasting Water', 'California', '2020-07-14'),
+('clothing' , 335.44, 'Lululemon', 'Pasadena, California', '2020-07-14'),
+('clothing' , 64.61, 'Lululemon', 'California', '2020-07-16'),
+('clothing' , 52.43, 'Lululemon', 'California', '2020-07-16'),
+('boba' , 12.02, 'One Zo', 'West Covina, California', '2020-07-16'),
+('boba' , 11.70, 'Half and Half Tea', 'West Covina, California', '2020-07-16'),
+('clothing' , 53.65, 'Lululemon', 'California', '2020-07-18'),
+('dining' , 21.34, 'Fat Sal', 'Los Angeles, California', '2020-07-18'),
+('boba' , 13.14, 'Tenju Tea', 'West Covina, California', '2020-07-18'),
+('dining' , 14.29, 'In N Out', 'Rowland, California', '2020-07-19'),
+('dining' , 7.09, 'Creamistry', 'Rowland, California', '2020-07-19'),
+('boba' , 10.93, 'One Zo', 'West Covina, California', '2020-07-21'),
+('dining' , 47.51, 'Pepper Lun', 'California', '2020-07-21'),
+('internet' , 9.99, 'Spotify', 'New York', '2020-07-23'),
+('merchandise' , 49.74, 'Amazon', 'Washington', '2020-07-23'),
+('skincare' , 58.32, 'Paulas Choice', 'Washington', '2020-07-24'),
+('dining' , 20.28, 'Taco Bell', 'Miami, Florida', '2020-07-24'),
+('merchandise' , 28.86, 'Amazon', 'Washington', '2020-07-26'),
+('university' , 30.00, 'FIU', 'Miami, Florida', '2020-07-27'),
+('merchandise' , 32.05, 'Amazon', 'Washington', '2020-07-27'),
+('merchandise' , 50.63, 'Amazon', 'Washington', '2020-07-27'),
+('gasoline' , 19.50, 'Marathon', 'Miami, Florida', '2020-07-29'),
+('games' , 19.99, 'Blizzard', 'Irvine, California', '2020-07-30'),
+('dining' , 16.23, 'Taco Bell', 'Miami, Florida', '2020-07-30'),
+('merchandise' , 47.26, 'Amazon', 'Washington', '2020-08-03'),
+('games' , 19.99, 'Blizzard', 'Irvine, California', '2020-08-07'),
+('games' , 19.99, 'Blizzard', 'Irvine, California', '2020-08-07'),
+('dining' , 23.00, 'Chicken Kitchen', 'Miami, Florida', '2020-08-07'),
+('boba' , 7.22, 'Teajito', 'Miami, Florida', '2020-08-07'),
+('grocery' , 8.55, 'Publix', 'Miami, Florida', '2020-08-07'),
+('dining' , 31.00, 'Peking One', 'Miami, Florida', '2020-08-08'),
+('merchandise' , 26.95, 'Amazon', 'Washington', '2020-08-11'),
+('gasoline' , 19.40, 'Marathon', 'Miami, Florida', '2020-08-12'),
+('payment' , 13.11, 'Lululemon', 'California', '2020-07-19'),
+('payment' , 873.48, 'Capital One', NULL, '2020-07-23'),
+('payment' , 29.57, 'Lululemon', 'California', '2020-07-23'),
+('payment' , 8.55, 'Publix', 'Miami, Florida', '2020-08-08')
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('dining' , 16.23, 'Taco Bell', 'Miami, Florida', '2020-08-14'),
+('keyboard' , 31.13, 'Project K', NULL , '2020-08-14'),
+('clothing' , 44.23, 'Lany Store', 'Florida', '2020-08-20'),
+('university' , 5.10, 'MDC', 'Miami, Florida', '2020-08-21'),
+('clothing' , 28.89, 'Taylor Swift Stop', 'California', '2020-08-21'),
+('internet' , 9.99, 'Spotify', 'New York', '2020-08-23'),
+('merchandise' , 10.00, 'Amazon', 'Washington', '2020-08-26'),
+('gasoline' , 21.45, 'Marathon', 'Miami, Florida', '2020-08-26'),
+('boba' , 18.19, 'Teajito', 'Miami, Florida', '2020-08-27'),
+('university' , 46.00, 'FIU', 'Miami, Florida', '2020-08-27'),
+('university' , 634.96, 'FIU', 'Miami, Florida', '2020-08-31'),
+('university' , 16.82, 'FIU', 'Miami, Florida', '2020-08-31'),
+('merchandise' , 26.75, 'Amazon', 'Washington', '2020-09-02'),
+('clothing' , 57.51, 'Adidas', NULL , '2020-09-04'),
+('dining' , 18.14, 'Mcdonald', 'Miami, Florida', '2020-09-05'),
+('university' , 10.00, 'FIU', 'Miami, Florida', '2020-09-06'),
+('university' , 39.88, 'FIU', 'Miami, Florida', '2020-09-08'),
+('games' , 4.99, 'Epic Games', 'North Carolina', '2020-09-09'),
+('gasoline' , 22.55, 'Marathon', 'Miami, Florida', '2020-09-09'),
+('payment' , 500.83, 'Capital One', NULL , '2020-08-15'),
+('payment' , 231.21, 'Capital One', NULL , '2020-08-31'),
+('payment' , 26.75, 'Amazon', 'Washington' , '2020-09-12')
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('keyboard' , 74.00, 'Jelly Key', 'California' , '2020-09-17'),
+('internet' , 9.99, 'Spotify', 'New York' , '2020-09-23'),
+('gasoline' , 22.55, 'Marathon', 'Miami, Florida' , '2020-09-23'),
+('merchandise' , 39.98, 'Amazon', 'WWashington' , '2020-09-26'),
+('boba' , 7.22, 'Teajito', 'Miami, Florida' , '2020-09-28'),
+('dining' , 12.00, 'Chicken Kitchen', 'Miami, Florida' , '2020-09-28'),
+('dining' , 16.23, 'Taco Bell', 'Miami, Florida' , '2020-10-03'),
+('dining' , 21.17, 'Wendy', 'Miami, Florida' , '2020-10-10'),
+('clothing' , 49.02, 'Second City Prints', NULL , '2020-10-11'),
+('skincare' , 45.47, 'Paulas Choice', 'Washington' , '2020-10-11'),
+('payment' , 804.85, 'Capital One', NULL , '2020-09-17'),
+('payment' , 181.97, 'Capital One', NULL , '2020-10-11')
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('gasoline' , 31.20, 'Marathon', 'Miami, Florida' , '2020-10-14'),
+('games' , 1.00, 'Microsoft', 'Washington' , '2020-10-18'),
+('internet' , 9.99, 'Spotify', 'New York' , '2020-10-23'),
+('dining' , 11.40, 'Pinecrest Bakery', 'Miami, Florida' , '2020-10-23'),
+('application' , 289.00, 'CASPA', 'Massachusetts' , '2020-10-24'),
+('boba' , 7.22, 'Teajito', 'Miami, Florida' , '2020-10-26'),
+('application' , 6.75, 'UPS Store', 'Miami, Florida' , '2020-10-26'),
+('application' , 27.00, 'ETS GRE', 'New Jersery' , '2020-10-28'),
+('merchandise' , 25.67, 'Amazon', 'Washington' , '2020-10-29'),
+('gasoline' , 26.75, 'Marathon', 'Miami, Florida' , '2020-10-29'),
+('merchandise' , 32.09, 'Amazon', 'Washington' , '2020-10-29'),
+('merchandise' , 67.49, 'Amazon', 'Washington' , '2020-10-30'),
+('application' , 50.00, 'NSU', 'Florida' , '2020-11-03'),
+('boba' , 7.22, 'Teajito', 'Miami, Florida' , '2020-11-06'),
+('dining' , 22.00, 'Chicken Kitchen', 'Miami, Florida' , '2020-11-06'),
+('dining' , 11.72, 'Mcdonalds', 'Miami, Florida' , '2020-11-07'),
+('merchandise' , 105.93, 'Target', 'Miami, Florida' , '2020-11-08'),
+('merchandise' , 50.26, 'Target', 'Miami, Florida' , '2020-11-08'),
+('gasoline' , 18.96, 'Marathon', 'Miami, Florida' , '2020-11-12'),
+('dining' , 22.00, 'Chicken Kitchen', 'Miami, Florida' , '2020-11-15'),
+('boba' , 7.22, 'Teajito', 'Miami, Florida' , '2020-11-15'),
+('payment' , 583.73, 'Capital One', NULL , '2020-10-31')
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('clothing' , 37.96, 'FIU Bookstore', 'Miami, Florida' , '2020-11-13'),
+('games' , 9.99, 'Microsoft', 'Washington' , '2020-11-19'),
+('skincare' , 32.70, 'Deciem', 'New York' , '2020-11-19'),
+('clothing' , 38.97, 'KT8 Merch', 'Cananda' , '2020-11-20'),
+('internet' , 9.99, 'Spotify', 'New York' , '2020-11-23'),
+('internet' , 79.20, 'Disney Plus', 'California' , '2020-11-24'),
+('gasoline' , 18.70, 'Marathon', 'Miami, Florida' , '2020-11-26'),
+('clothing' , 58.15, 'Scrub & Beyond', NULL , '2020-11-28'),
+('dining' , 14.10, 'Pincrest Bakery', 'Miami, Florida' , '2020-11-30'),
+('clothing' , 47.08, 'Lululemon', 'California' , '2020-12-04'),
+('boba' , 7.22, 'Teajito', 'Miami, Florida' , '2020-12-05'),
+('gasoline' , 23.50, 'Marathon', 'Miami, Florida' , '2020-12-09'),
+('membership' , 60.00, 'Costco', 'Miami, Florida' , '2020-12-10'),
+('clothing' , 37.24, 'Taylor Swift Shop', 'California' , '2020-12-10'),
+('merchandise' , 39.99, 'Costco', 'Washington' , '2020-12-11'),
+('merchandise' , 57.99, 'Costco', 'Washington' , '2020-12-11'),
+('games' , 7.99, 'Epic Games', 'North Carolina' , '2020-12-11'),
+('shoes' , 50.83, 'Adidas', NULL , '2020-12-14'),
+('shoes' , 96.57, 'Everlane', 'California' , '2020-12-15'),
+('automotive' , 121.95, 'Weathertech', 'Illinois' , '2020-12-15'),
+('shoes' , 60.96, 'Nike', 'California' , '2020-12-16'),
+('payment' , 571.61, 'Capital One', NULL , '2020-11-26'),
+('payment' , 145.25, 'Capital One', NULL , '2020-12-10')
+;
+
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('application' , 28.22, 'Fedex', 'Miami, Florida' , '2020-12-17'),
+('internet' , 9.99, 'Spotify', NULL , '2020-12-23'),
+('dining' , 13.00, 'Chicken Kitchen', 'Miami, Florida' , '2020-12-24'),
+('boba' , 7.22, 'Teajito', 'Miami, Florida' , '2020-12-24'),
+('dining' , 12.00, 'Pinecrest Bakery', 'Miami, Florida' , '2020-12-26'),
+('clothing' , 41.73, 'Lululemon', 'California' , '2020-12-29'),
+('gasoline' , 20.50, 'Marathon', 'Miami, Florida' , '2020-12-30'),
+('haircare' , 52.75, 'Bumble and Bumble', 'Pennsylvania' , '2021-01-06'),
+('clothing' , 73.83, 'Lululemon', 'California' , '2021-01-09'),
+('dining' , 10.90, 'Publix', 'Miami, Florida' , '2021-01-09'),
+('merchandise' , 42.79, 'Costco', 'Washington' , '2021-01-10'),
+('gasoline' , 23.15, 'Marathon', 'Miami, Florida' , '2021-01-13'),
+('payment' , 585.24, 'Capital One', NULL , '2020-12-24')
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('university' , 20.00, 'Top Hat', NULL , '2021-01-16'),
+('merchandise' , 14.49, 'Costco', 'Washington' , '2021-01-18'),
+('university' , 915.53, 'FIU', 'Miami, Florida' , '2021-01-19'),
+('university' , 24.26, 'FIU', 'Miami, Florida' , '2021-01-19'),
+('clothing' , 24.50, 'Uniqlo', 'New Jersery' , '2021-01-21'),
+('internet' , 9.99, 'Spotify', 'New York' , '2021-01-23'),
+('gasoline' , 18.40, 'Marathon', 'Miami, Florida' , '2021-01-27'),
+('university' , 95.99, 'Mcgraw-Hill', 'New York' , '2021-01-28'),
+('dining' , 66.00, 'Ernestos Taco', 'Miami, Florida' , '2021-01-28'),
+('dining' , 27.81, 'Publix', 'Miami, Florida' , '2021-01-29'),
+('dining' , 21.95, 'Chicken Kitchen', 'Miami, Florida' , '2021-01-30'),
+('boba' , 7.49, 'Teajito', 'Miami, Florida' , '2021-01-30'),
+('concert' , 29.98, 'Blackpink', NULL , '2021-01-30'),
+('merchandise' , 54.15, 'Amazon', 'Washington' , '2021-02-05'),
+('parking' , 6.00, 'Economy Park Ride', 'Doral, Florida' , '2021-02-06'),
+('dining' , 27.81, 'Publix', 'Miami, Florida' , '2021-02-06'),
+('skincare' , 45.47, 'Paulas Choice', 'Washington' , '2021-02-09'),
+('gasoline' , 32.35, 'Marathon', 'Miami, Florida' , '2021-02-10'),
+('payment' , 1584.25, 'Capital One', NULL , '2021-02-04')
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('dining' , 8.33, 'Steak-N-Shake', 'Miami, Florida' , '2021-02-13'),
+('dining' , 52.71, 'Steak-N-Shake', 'Miami, Florida' , '2021-02-14'),
+('boba' , 7.22, 'Teajito', 'Miami, Florida' , '2021-02-22'),
+('dining' , 34.64, 'Chicken Kitchen', 'Miami, Florida' , '2021-02-22'),
+('internet' , 11.30, 'Spotify', 'New York' , '2021-02-23'),
+('dining' , 14.61, 'Taco Bell', 'Miami, Florida' , '2021-02-23'),
+('merchandise' , 20.24, 'Amazon', 'Washington' , '2021-02-24'),
+('gasoline' , 20.00, 'Marathon', 'Miami, Florida' , '2021-02-24'),
+('merchandise' , 15.58, 'Amazon', 'Washington' , '2021-02-25'),
+('games' , 19.99, 'Steam', 'Washington' , '2021-02-26'),
+('dining' , 50.00, 'Ernestos Taco', 'Miami, Florida' , '2021-03-04'),
+('merchandise' , 30.91, 'Amazon', 'Washington' , '2021-03-08'),
+('gasoline' , 30.00, 'Marathon', 'Miami, Florida' , '2021-03-10'),
+('merchandise' , 83.42, 'Target', 'Miami, Florida' , '2021-03-16'),
+('merchandise' , 67.18, 'BJs Wholesale', 'Miami, Florida' , '2021-03-16'),
+('payment' , 370.40, 'Capital One', NULL , '2021-03-04')
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('games' , 9.89, 'Steam', 'Washington' , '2021-03-18'),
+('dining' , 14.96, 'Publix', 'Miami, Florida' , '2021-03-20'),
+('internet' , 11.30, 'Spotify', 'New York' , '2021-03-23'),
+('gasoline' , 26.80, 'Marathon', 'Miami, Florida' , '2021-03-24'),
+('games' , 59.99, 'Nintendo', 'Washington' , '2021-03-26'),
+('dining' , 13.94, 'Sushi Maki', 'Miami, Florida' , '2021-03-27'),
+('games' , 59.99, 'Nintendo', 'Washington' , '2021-04-03'),
+('dining' , 36.36, 'Publix', 'Miami, Florida' , '2021-04-03'),
+('gasoline' , 23.85, 'Marathon', 'Miami, Florida' , '2021-04-07'),
+('courses' , 139.31, 'Udemy', 'California' , '2021-04-14'),
+('payment' , 398.39, 'Capital One', NULL , '2021-04-01')
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('dining' , 50.00, 'Peking One', 'Miami, Florida' , '2021-04-17'),
+('boba' , 20.87, 'Teajito', 'Miami, Florida' , '2021-04-20'),
+('dining' , 49.00, 'Chicken Kitchen', 'Miami, Florida' , '2021-04-20'),
+('gasoline' , 31.00, 'Marathon', 'Miami, Florida' , '2021-04-21'),
+('internet' , 11.30, 'Spotify', 'New York' , '2021-04-23'),
+('clothing' , 58.44, 'Macys', 'Ohio' , '2021-04-26'),
+('dining' , 200.00, 'Walk-On', 'Miami, Florida' , '2021-04-26'),
+('merchandise' , 57.99, 'Costco', 'Washington' , '2021-04-27'),
+('gasoline' , 25.15, 'Marathon', 'Miami, Florida' , '2021-05-05'),
+('clothing' , 59.91, 'Scrubs & Beyond', 'Missouri' , '2021-05-08'),
+('merchandise' , 34.72, 'Walgreens', 'Miami, Florida' , '2021-05-08'),
+('dining' , 58.00, 'Peking One', 'Miami, Florida' , '2021-05-09'),
+('dining' , 27.00, 'Mcdonalds', 'Miami, Florida' , '2021-05-14'),
+('electronics' , 427.99, 'Best Buy', 'Miami, Florida' , '2021-05-16'),
+('payment' , 738.11, 'Capital One', NULL , '2021-05-01')
+;
+
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('gasoline' , 27.70, 'Marathon', 'Miami, Florida' , '2021-05-18'),
+('dining' , 24.58, 'Publix', 'Miami, Florida' , '2021-05-21'),
+('application' , 5.10, 'MDC', 'Miami, Florida' , '2021-05-21'),
+('application' , 10.00, 'FIU', 'Miami, Florida' , '2021-05-22'),
+('internet' , 11.30, 'Spotify', 'New York' , '2021-05-23'),
+('application' , 140.00, 'UCB', 'California' , '2021-05-27'),
+('airbnb' , 314.04, 'Airbnb', 'California' , '2021-05-28'),
+('airfare' , 536.80, 'American Airline', 'Fort Worth, Texas' , '2021-05-28'),
+('clothing' , 184.00, 'Aer Designs', 'California' , '2021-05-29'),
+('dining' , 7.18, 'Publix', 'Miami, Florida' , '2021-05-30'),
+('gasoline' , 29.40, 'Marathon', 'Miami, Florida' , '2021-06-02'),
+('application' , 27.00, 'ETS GRE', 'New Jersery' , '2021-06-04'),
+('merchandise' , 77.50, 'Amazon', 'Washington' , '2021-06-06'),
+('merchandise' , 59.69, 'Costco', 'Washington' , '2021-06-09'),
+('merchandise' , 14.09, 'Costco', 'Washington' , '2021-06-09'),
+('dining' , 10.98, 'Publix', 'Miami, Florida' , '2021-06-09'),
+('merchandise' , 36.35, 'Target', 'Miami, Florida' , '2021-06-12'),
+('dining' , 46.53, 'Uber Eats', 'California' , '2021-06-14'),
+('dining' , 5.47, 'Uber Eats', 'California' , '2021-06-15'),
+('payment' , 1893.47, 'Capital One', NULL , '2021-06-01'),
+('payment' , 20.00, 'UCB', 'California' , '2021-06-12')
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('gasoline' , 27.90, 'Marathon', 'Miami, Florida' , '2021-06-16'),
+('merchandise' , 79.57, 'Amazon', 'Washington' , '2021-06-18'),
+('merchandise' , 92.92, 'Costco', 'Miami, Florida' , '2021-06-19'),
+('airbnb' , 314.03, 'Airbnb', 'California' , '2021-06-20'),
+('dining' , 55.00, 'Chicken Kitchen', 'Miami, Florida' , '2021-06-21'),
+('shoes' , 53.65, 'Everlane', 'California' , '2021-06-23'),
+('internet' , 11.30, 'Spotify', 'New York' , '2021-06-23'),
+('dentist' , 50.00, 'South Dental', 'Miami, Florida' , '2021-06-24'),
+('dining' , 16.00, 'Peking One', 'Miami, Florida' , '2021-06-27'),
+('clothing' , 70.44, 'Old Navy', 'Ohio' , '2021-06-28'),
+('clothing' , 15.76, 'Old Navy', 'Ohio' , '2021-06-28'),
+('clothing' , 23.82, 'Old Navy', 'Ohio' , '2021-06-29'),
+('gasoline' , 29.30, 'Marathon', 'Miami, Florida' , '2021-06-30'),
+('merchandise' , 24.07, 'Target', 'West Covina' , '2021-07-02'),
+('haircare' , 3.50, 'Takashimacity', 'West Covina' , '2021-07-02'),
+('dining' , 19.27, 'Sul & Beans', 'Rowland Heights, California' , '2021-07-02'),
+('dining' , 75.00, 'The Beverly Garland', 'Hollywood, California' , '2021-07-02'),
+('clothing' , 64.20, 'Uniqlo', 'Costa Mesa, California' , '2021-07-03'),
+('dining' , 63.00, 'Snooze', 'Tustin, California' , '2021-07-03'),
+('clothing' , 117.99, 'Lululemon', 'Costa Mesa, California' , '2021-07-03'),
+('dining' , 50.00, 'Mokkoji', 'Costa Mesa, California' , '2021-07-03'),
+('gasoline' , 44.20, 'Exxon Mobil', 'Costa Mesa, California' , '2021-07-05'),
+('dining' , 70.22, 'Thumbling', 'West Covina, California' , '2021-07-05'),
+('dining' , 44.37, 'Nishiki Ramen', 'Hillcrest, California' , '2021-07-06'),
+('zoo' , 210.00, 'San Diego Zoo', 'San Diego, California' , '2021-07-06'),
+('dining' , 42.09, 'Thorntree', 'San Diego, California' , '2021-07-06'),
+('dining' , 87.79, 'Cucina', 'San Diego, California' , '2021-07-07'),
+('dining' , 76.16, 'Mo Mo', 'San Diego, California' , '2021-07-08'),
+('dining' , 65.00, 'Great Maple', 'Hillcrest, California' , '2021-07-08'),
+('dining' , 36.10, 'Boiling Point', 'Rowland Height, California' , '2021-07-09'),
+('dining' , 13.91, 'XFT SGV', 'Rosemead, California' , '2021-07-10'),
+('dining' , 17.41, 'Sul & Beans', 'Rowland Height, California' , '2021-07-10'),
+('dining' , 34.20, 'Thumbling', 'West Covina, California' , '2021-07-10'),
+('merchandise' , 12.83, 'Amazon', 'Washington' , '2021-07-12'),
+('dining' , 45.00, 'Ernestos Taco', 'Miami, Florida' , '2021-07-12'),
+('merchandise' , 24.60, 'Costco', 'Washington' , '2021-07-12'),
+('payment' , 1097.39, 'Capital One', NULL , '2021-07-01'),
+('payment' , 16.41, 'Target', 'West Covina, California' , '2021-07-10')
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('merchandise' , 26.08, 'Target', 'Miami, Florida' , '2021-07-17'),
+('gasoline' , 25.40, 'Marathon', 'Miami, Florida' , '2021-07-21'),
+('dental' , 450.00, 'South Dental', 'Miami, Florida' , '2021-07-22'),
+('dental' , 3.24, 'Walgreens', 'Miami, Florida' , '2021-07-22'),
+('internet' , 11.30, 'Spotify', 'New York' , '2021-07-23'),
+('automotive' , 80.24, 'Valvoline', 'Miami, Florida' , '2021-07-23'),
+('automotive' , 449.40, 'Tires 4 Less', 'Miami, Florida' , '2021-07-23'),
+('grocery' , 17.99, 'Ranibrand', 'Texas' , '2021-07-30'),
+('boba' , 8.40, 'Teajito', 'Miami, Florida' , '2021-07-30'),
+('merchandise' , 27.98, 'Amazon', 'Washington' , '2021-08-02'),
+('gasoline' , 27.35, 'Marathon', 'Miami, Florida' , '2021-08-04'),
+('merchandise' , 22.46, 'Costco', 'Washington' , '2021-08-05'),
+('dining' , 185.00, 'Walk-On', 'Miami, Florida' , '2021-08-05'),
+('boba' , 7.60, 'Teajito', 'Miami, Florida' , '2021-08-06'),
+('dining' , 34.64, 'Chicken Kitchen', 'Miami, Florida' , '2021-08-06'),
+('game' , 5.00, 'Steam', 'Washington' , '2021-08-11'),
+('merchandise' , 26.74, 'Amazon', 'Washington' , '2021-08-11'),
+('game' , 24.90, 'Steam', 'Washington' , '2021-08-11'),
+('merchandise' , 23.53, 'Amazon', 'Washington' , '2021-08-13'),
+('dining' , 29.95, 'Taco Bell', 'Miami, Florida' , '2021-08-14'),
+('merchandise' , 213.99, 'Costco', 'Washington' , '2021-08-16'),
+('payment' , 2353.83, 'Capital One', NULL , '2021-08-05')
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('game' , 5.00, 'Steam', 'Washington' , '2021-08-17'),
+('gasoline' , 25.30, 'Marathon', 'Miami, Florida' , '2021-08-17'),
+('dining' , 13.02, 'Taco Bell', 'Miami, Florida' , '2021-08-19'),
+('Oracle Exam' , 245.00, 'Vue Oracle', 'Minnesota' , '2021-08-22'),
+('internet' , 11.30, 'Spotify', 'New York' , '2021-08-23'),
+('merchandise' , 19.99, 'Amazon', 'Washington' , '2021-08-26'),
+('electronics' , 1262.57, 'AntOnline', 'Georgia' , '2021-08-26'),
+('merchandise' , 79.16, 'Costco', 'Washington' , '2021-08-26'),
+('dining' , 38.00, 'Peking One', 'Miami, Florida' , '2021-08-26'),
+('gasoline' , 30.40, 'Marathon', 'Miami, Florida' , '2021-09-01'),
+('boba' , 13.75, 'Teajito', 'Miami, Florida' , '2021-09-06'),
+('dining' , 25.00, 'Chicken Kitchen', 'Miami, Florida' , '2021-09-06'),
+('dining' , 34.61, 'Wendy', 'Miami, Florida' , '2021-09-09'),
+('dining' , 50.00, 'Peking One', 'Miami, Florida' , '2021-09-12'),
+('merchandise' , 29.92, 'Amazon', 'Washington' , '2021-09-13'),
+('merchandise' , 82.03, 'Costco', 'Washington' , '2021-09-14'),
+('payment' , 2299.80, 'Capital One', NULL , '2021-09-02'),
+('payment' , 15.58, 'Amazon', 'Washington' , '2021-09-04')
+
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('gasoline' , 31.90, 'Marathon', 'Miami, Florida' , '2021-09-16'),
+('internet' , 11.30, 'Spotify', 'New York' , '2021-09-23'),
+('dining' , 90.00, 'Uber Eats', 'California' , '2021-09-26'),
+('merchandise' , 11.76, 'Amazon', 'Washington' , '2021-09-27'),
+('gasoline' , 26.10, 'Marathon', 'Miami, Florida' , '2021-09-29'),
+('dining' , 10.70, 'Taco Bell', 'Miami, Florida' , '2021-10-02'),
+('merchandise' , 10.02, 'Amazon', 'Washington' , '2021-10-03'),
+('airfare' , 342.80, 'American Airlines', 'Fort Worth, Texas' , '2021-10-04'),
+('airfare' , 31.06, 'American Airlines', 'Fort Worth, Texas' , '2021-10-04'),
+('merchandise' , 9.39, 'Amazon', 'Washington' , '2021-10-08'),
+('boba' , 12.73, 'Tik Tea', 'Miami, Florida' , '2021-10-09'),
+('gasoline' , 24.70, 'Marathon', 'Miami, Florida' , '2021-10-12'),
+('game' , 1.00, 'Microsoft', 'Washington' , '2021-10-13'),
+('dining' , 34.01, 'Pho Tastic', 'Miami, Florida' , '2021-10-14'),
+('clothing' , 70.62, 'Lululemon', 'California' , '2021-10-15'),
+('payment' , 421.19, 'Capital One', NULL , '2021-10-01')
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('clothing' , 434.96, 'Lululemon', 'California' , '2021-10-16'),
+('gasoline' , 28.60, 'Marathon', 'Miami, Florida' , '2021-10-22'),
+('internet' , 11.30, 'Spotify', 'New York' , '2021-10-23'),
+('internet' , 23.99, 'Apple', 'California' , '2021-10-28'),
+('internet' , 23.99, 'Apple', 'California' , '2021-10-28'),
+('dining' , 32.50, 'Chicken Kitchen', 'Miami, Florida' , '2021-11-06'),
+('gasoline' , 33.46, 'Marathon', 'Miami, Florida' , '2021-11-06'),
+('merchandise' , 57.99, 'Costco', 'Washington' , '2021-11-07'),
+('merchandise' , 23.99, 'Costco', 'Washington' , '2021-11-07'),
+('dining' , 32.14, 'Pollo Tropical', 'Miami, Florida' , '2021-11-08'),
+('game' , 1.00, 'Microsoft', 'Washington' , '2021-11-10'),
+('hotel' , 371.67, 'Westin', 'San Diego, California' , '2021-11-15'),
+('payment' , 23.99, 'Apple', 'California' , '2021-10-30'),
+('payment' , 1069.87, 'Capital One', NULL , '2021-11-01'),
+('payment' , 1.00, 'Microsoft', 'Washington' , '2021-11-10')
+;
+
+INSERT INTO capital_transations (
+    item, amount, merchant, address, purchased_date)
+VALUES ('automotive' , 91.77, 'Firestone', 'Miami, Florida' , '2021-11-15'),
+('dining' , 27.56, 'Bolay', 'Miami, Florida' , '2021-11-18'),
+('dining' , 42.32, 'Love Letter Pizza', 'Rowland Heights, California' , '2021-11-18'),
+('dining' , 12.13, 'Waffle Love', 'Long Beach, California' , '2021-11-18'),
+('grocery' , 25.72, 'Target', 'Camarillo, California' , '2021-11-20'),
+('airfare' , 174.00, 'American Airlines', 'Fort Worth, Texas' , '2021-11-20'),
+('airfare' , 418.40, 'American Airlines', 'Fort Worth, Texas' , '2021-11-20'),
+('airfare' , 32.74, 'American Airlines', 'Fort Worth, Texas' , '2021-11-20'),
+('brewery' , 21.45, 'Institutions Ale', 'Camarillo, California' , '2021-11-21'),
+('brewery' , 59.17, 'Crank Works', 'Thousand Oaks, California' , '2021-11-21'),
+('dining' , 17.03, 'Chick-Fil-A', 'Thousand Oaks, California' , '2021-11-22'),
+('internet' , 11.30, 'Spotify', 'New York' , '2021-11-23'),
+('automotive' , 577.80, 'Tires 4 Less', 'Miami, Florida' , '2021-11-23'),
+('gasoline' , 30.05, 'Marathon', 'Miami, Florida' , '2021-11-24'),
+('merchandise' , 17.99, 'Costco', 'Washington' , '2021-11-26'),
+('merchandise' , 42.79, 'Costco', 'Washington' , '2021-11-27'),
+('game' , 10.00, 'Steam', 'Washington' , '2021-11-29'),
+('merchandise' , 20.32, 'Costco', 'Washington' , '2021-11-29'),
+('entertainment' , 55.14, 'Top Golf', 'Doral, Florida' , '2021-11-30'),
+('renewal' , 60.00, 'Costco', 'Washington' , '2021-12-02'),
+('dining' , 27.77, 'Mcdonalds', 'Miami,Florida' , '2021-12-05'),
+('entertainment' , 13.90, 'AMC Sunset Place', 'Miami,Florida' , '2021-12-08'),
+('parking' , 3.25, 'Laz Parking', 'Miami,Florida' , '2021-12-08'),
+('payment' , 2193.03, 'Capital One', NULL , '2021-12-01')
+;
+
+-- Fixed mistake of inputting 'NULL' instead of NULL
+
+UPDATE capital_transations 
+Set address=NULL
+WHERE address='NULL'
+;
+
+-- Checking Count of Different Locations
+SELECT COUNT(DISTINCT address) from capital_transations
+;
+
+
+SELECT address, COUNT(address) from capital_transations
+WHERE address ='Miami'
+OR address = 'West Palm Beach'
+GROUP BY address
+;
+
+-- Fixing Spelling Mistakes
+
+UPDATE capital_transations 
+Set address='Rowland Height,California'
+WHERE address='Rowland Heights, California'
+;
+
+UPDATE capital_transations 
+Set address='Washington'
+WHERE address='WWashington'
+;
+
+UPDATE capital_transations 
+Set address='Miami, Florida'
+WHERE address='Miami'
+;
+UPDATE capital_transations 
+Set address='West Palm Beach, Florida'
+WHERE address='West Palm Beach'
+;
+
+UPDATE capital_transations 
+Set address='Davie, Florida'
+WHERE address='Davie'
+;
+
+UPDATE capital_transations 
+Set address='Doral, Florida'
+WHERE address='Doral'
+;
+
+UPDATE capital_transations 
+Set address='West Covina, California'
+WHERE address='West Covina'
+;
+
+-- Queries for Tableau Visualizations
+
+SELECT max(amount), address from capital_transations
+GROUP BY address
+;
+
+SELECT max(amount), address from capital_transations
+WHERE address IS NOT NULL
+GROUP BY amount, address
+ORDER BY amount desc
+;
+
+
+SELECT item, max(amount), address from capital_transations
+WHERE address IS NOT NULL
+GROUP BY item, amount, address
+ORDER BY amount desc
+LIMIT 10
+;
+
+SELECT COUNT(address) as Count, address from capital_transations
+WHERE address LIKE '%Florida%'
+GROUP BY address
+;
+
+SELECT COUNT(address) as Count, address from capital_transations
+WHERE address LIKE any (array ['%Florida%','%California%'])
+GROUP BY address
+ORDER BY count desc
+;
+
+SELECT SUM(amount) as total, address from capital_transations
+WHERE address LIKE any (array ['%Florida%','%California%'])
+GROUP BY address
+ORDER BY total desc
+;
+
+
+SELECT item, SUM(amount), address from capital_transations
+WHERE item= 'boba'
+GROUP BY item, address
+
+SELECT SUM(amount) as total from capital_transations
+WHERE purchased_date BETWEEN '2020-01-01' AND '2020-12-31'
+
+
+SELECT SUM(amount) as total from capital_transations
+WHERE purchased_date BETWEEN '2021-01-01' AND '2021-12-31'
+
+\copy (Select * From capital_transations) To 'C:\Users\Luigi\Desktop\Coding\capital_trans_db2.csv' With CSV DELIMITER ',' HEADER
