@@ -1,0 +1,262 @@
+---
+title: "Final Project: Statistical Insights into University Performance Drivers"
+author: "Andrea Bianchi, Luis Maldonado, Marcelo Garcia"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+```
+
+
+# Abstract
+
+This statistical analysis delves into the factors that influence the overall academic performance of universities. The study's primary objective is to ascertain the impact of various predictors on the "OverAllScore," a complete measure reflecting the universities' comprehensive performance. To achieve this, we employed statistical techniques, including linear regression models and F-tests, to analysis the relationships between multiple predictor variables and the "OverAllScore." The predictors that we are going to investigate are ResearchScore, CitationsScore, TeachingScore, InternationalOutlookScore, and IndustryIncomeScore.
+
+Our findings underscore the pivotal roles played by certain predictors in shaping the OverAllScore of universities. Specifically, ResearchScore, CitationsScore, and TeachingScore emerge as influential contributors to enhanced "OverAllScore." For each unit increase in ResearchScore, we observe a corresponding rise of approximately 0.3165 units in "OverAllScore." Similarly, CitationsScore exhibits a positive association, with a one-unit increment leading to an approximate 0.3234 unit increase in "OverAllScore." TeachingScore contributes positively as well, with a one-unit hike resulting in an increase of approximately 0.3159 units in "OverAllScore." Conversely, IndustryIncomeScore exerts a  negative influence, with a one-unit drop leading to a decrease of about 0.0348 units in "OverAllScore." The InternationalOutlookScore, while statistically significant, contributes less prominently with a one-unit increase correlating to a rise of roughly 0.0835 units in "OverAllScore."
+
+These findings hold significant implications for university administrators and policymakers. By recognizing the critical impact of specific predictors, institutions can strategically allocate resources to bolster their ResearchScore, CitationsScore, and TeachingScore while considering the nuanced effects of IndustryIncomeScore  In sum, this study advances our understanding of the multifaceted determinants of university performance and provides valuable guidance for fostering academic excellence in higher education institutions.
+
+The data is contained within the `Universities.csv` file. 
+
+\pagebreak
+
+# Problem Statement
+In today's interconnected global society, the evaluation and ranking of universities have evolved into a complex and multifaceted process. No longer confined within the boundaries of individual nations, universities now find themselves competing on an international stage. As a result, the criteria for assessing and ranking these institutions have expanded considerably to encompass a wide range of factors that go beyond academic excellence alone.
+
+A high-ranking university not only attracts top talent in terms of faculty and students but also enjoys economic benefits. It can command higher tuition fees, secure more research funding, and establish lucrative partnerships with industry and government. Moreover, a university's global recognition plays a significant role in attracting international students and faculty, further enhancing its economic and academic prospects.
+
+Given the multifaceted nature of university rankings and their profound impact on an institution's future, it has become imperative for university analysts and administrators to delve deep into the profiles of these institutions. Through meticulous examination, they aim to discern the critical factors that influence ranking outcomes and, consequently, the future trajectory of the university.
+
+In this ever-evolving landscape, understanding the interplay of academic excellence, economic sustainability, and global recognition is key to thriving in the highly competitive world of higher education. By analyzing and adapting to these factors, universities can position themselves strategically to secure their place among the world's best institutions and ensure their continued success.
+
+In this case study, we will:
+  1. Assess the regression model fit from the preliminary analysis.
+  2. Test for differences factors relationship across universities.
+  3. Find a parsimonious model that predicts key factors and analyze their influence on the overall score. 
+  4. Predict the interval around observation 194(University of Miami)
+  5. Hypotheses testing for new business school dean's prediction.
+
+## Data Description
+The data set consists of the variables listed below.
+
+- N_students
+- N_.student_per_staff
+- InterStudent
+- TeachingScore
+- ResearchScore 
+- CitationsScore
+- IndustryIncomeScore
+- InternationalOutlookScore
+- FemaleRatio
+- MaleRatio
+- OverAllScore (Response Variable)
+
+ 
+\pagebreak
+
+```{r, echo=FALSE}
+df = read.csv("C:/Users/luisa/OneDrive/Desktop/MSBA/MAS 637/Universities.csv")
+
+```
+
+# Dataframe Summary
+The summary report provides crucial statistical insights for each variable within our dataset, offering a comprehensive understanding of their characteristics. It encompasses essential measures that shed light on various aspects of the data. For instance, it reveals central tendencies, such as the average and median, which help identify where data tends to concentrate. Additionally, it illustrates the data's dispersion, showcasing the range from the smallest to the largest values.
+
+Furthermore, the summary highlights the distribution of data among different groups or categories. This is valuable for understanding how these variables are distributed across various segments.
+
+Moreover, the summary offers an intriguing insight regarding the score variables within the dataset. It indicates that these scores exhibit a skewness toward the lower end of the spectrum. In other words, a significant portion of the scores tends to be on the lower side, suggesting a potential concentration of lower scores within the dataset. This information provides a valuable starting point for further analysis and exploration of the dataset's characteristics. 
+
+In addition, as shown by the accompanying graphs, there appears to be a discernible relationship between Teaching Score and Research Score with the Overall Score. These variables seem to exert a considerable impact compared to other variables, indicating their significance in influencing the Overall Score. This noteworthy observation prompts us to explore the nuanced dynamics and interplay among these influential factors as we delve deeper into our dataset's characteristics.
+
+``` {r}
+par(mfrow = c(2, 3))
+
+hist(df$OverAllScore, xlab = "OverAllScore",
+     main = "Overall Score",
+     col = "yellow2")
+
+
+hist(df$TeachingScore, xlab = "Teaching Score", 
+     main = "Teaching Score",
+     col = "forestgreen")
+
+hist(df$ResearchScore, xlab = "Research Score", 
+     main = "Research Score",
+     col = "red4")
+
+hist(df$CitationsScore,  xlab = "Citations Score", 
+     main = "Citations Score",
+     col = "blue4")
+
+hist(df$InternationalOutlookScore,  xlab = "International Outlook Score", 
+     main = "International Outlook Score",
+     col = "orange2")
+
+hist(df$IndustryIncomeScore, xlab = "Industry Income Score",
+     main = "Industry Income Score",
+     col= "magenta3")
+```
+
+\pagebreak
+
+# Stepwise Regression Summary
+The purpose of this step-wise regression selection is to find the most parsimonious (simplest yet effective) model that explains the variation in the response variable while avoiding overfitting. It does so by iteratively selecting or excluding predictors based on their contribution to model fit as measured by AIC. The final model is expected to provide a good balance between explanatory power and model complexity.
+
+This regression model suggests that "OverAllScore" can be significantly predicted by the predictor variables: ResearchScore, CitationsScore, TeachingScore, InternationalOutlookScore, and IndustryIncomeScore. The model explains a very high proportion of the variance in the response variable, and all predictor variables are highly statistically significant in predicting "OverAllScore." The model's predictions closely align with the actual data, as indicated by the median residual being close to zero.
+
+```{r, results='hide'}
+allreg = lm(OverAllScore ~ ., - MaleRatio, data = df)
+null = lm(OverAllScore ~ 1, data = df)
+FS = step(null, scope = list(upper = allreg), direction = 'forward')
+```
+
+```{r}
+summary(FS)
+```
+
+\pagebreak
+
+# Best Fit Model
+In the context of our best subset model has highlighted CitationsScore and TeachingScore as the most crucial variables influencing the OverallScore of the university. However, a notable decision was made regarding the inclusion of the intercept term in the model.
+
+The decision to retain the intercept was driven by several key factors. Firstly, it was necessary for the correct functioning of the model and the accurate calculation of the adjusted R-squared value. The intercept plays a fundamental role in accounting for the baseline or starting point of OverallScore when all predictor variables are set to zero. This inclusion ensures that the adjusted R-squared, which adjusts for model complexity, could be calculated and interpreted in a meaningful manner.
+
+Additionally, keeping the intercept served to prevent excessive penalization by the BIC during the model selection process. The BIC penalizes models with more parameters, and the intercept introduces an additional parameter. By retaining the intercept, the model's complexity was appropriately balanced, allowing the BIC to evaluate the model's goodness of fit without unfairly punishing it for including this fundamental component.
+```{r}
+sco = OverAllScore ~ ResearchScore + CitationsScore + 
+    TeachingScore + InternationalOutlookScore + IndustryIncomeScore
+
+library(leaps)
+bst = regsubsets(sco, data = df)
+
+plot(bst, scale = "adjr2")
+```
+
+\pagebreak
+
+# Regression Model 
+
+```{r}
+reg = lm(OverAllScore ~ ResearchScore + CitationsScore + 
+    TeachingScore + InternationalOutlookScore + IndustryIncomeScore+0, 
+    data = df)
+
+summary(reg)
+```
+
+In this analysis, we examine the coefficients associated with the predictor variables in our linear regression model. Starting with the intercept, it has a value of -4.7995, representing the predicted "OverAllScore" when all predictor variables (ResearchScore, CitationsScore, TeachingScore, InternationalOutlookScore, and IndustryIncomeScore) are set to zero. The equation for the linear regression model is given below:
+$$\hat{y}=0.419246x_1+0.314408x_2+0.228617x_3+0.057004x_4-0.034840x_5$$
+- ResearchScore, coefficient of 0.419246, implies that for each one-unit increase in ResearchScore, the predicted "OverAllScore" is expected to rise by approximately 0.419246 units.
+
+- CitationsScore, coefficient of 0.314408, follows a similar pattern. A one-unit increase in CitationsScore is associated with a predicted increase of about 0.314408 units in "OverAllScore,".
+
+- TeachingScore, coefficient of 0.228617, indicates that a one-unit increase in TeachingScore results in a predicted increase of approximately 0.228617 units in "OverAllScore,".
+
+- InternationalOutlookScore, coefficient of 0.057004, suggests that if InternationalOutlookScore increases by one unit, the predicted "OverAllScore" is expected to increase by approximately 0.057004 units, all else being equal.
+
+- IndustryIncomeScore, coefficient of -0.034840, demonstrates a different relationship. A one-unit increase in IndustryIncomeScore is associated with a decrease in the predicted "OverAllScore" by approximately 0.034840 units.
+
+These coefficients provide valuable insights into the impact of each predictor variable on the predicted "OverAllScore" and help us understand how changes in these variables influence the outcome while considering the other factors in the model.
+
+\pagebreak
+
+# Normality Test
+Normality, in statistics, refers to the assumption that the data or the residuals (the differences between observed and predicted values in a statistical model) follow a normal distribution. Normality is an important assumption in many statistical techniques because it enables the application of certain statistical tests and ensures that statistical estimates and inferences are valid.
+
+When a residual plot exhibits a clear pattern, such as non-random patterns like curves or skewness, it suggests that the assumption of normality is not met. In other words, the residuals do not follow a normal distribution. 
+
+The relationship between the shape of the residual plot and the distribution of residuals in the histogram is crucial for understanding how the OverallScore is affected by your statistical model.
+
+When you have a normally distributed residual histogram, it indicates that our model's assumptions are likely met, suggesting that our model accurately captures the relationships between predictor variables (such as TeachingScore, ResearchScore, and CitationScore) and the OverallScore. In our report, the OverallScore is likely to be reliably predicted by the variables in your model, and you can have confidence in the model's predictions.
+
+However, since our residual plot indicates a non-normally distributed model, it raises concerns about the accuracy of the model. This discrepancy implies that the model may not be effectively capturing the underlying patterns in the data, potentially leading to inaccuracies in predicting the OverallScore. 
+
+The suspicion of a fixed equation affecting the Overall Score implies a systematic relationship rather than random influence. This suggests that Overall Score isn't subject to random variation but is consistently shaped by specific variables. This assumption guides our statistical analysis to understand the nature and strength of these relationships.
+
+```{r}
+par(mfrow = c(1, 2))
+hist(reg$residuals, xlab = "Residuals", 
+     main = "Histogram of Residuals")
+plot(reg$fitted.values, reg$residuals, xlab = "Fitted values", 
+     ylab = "Residuals", main = "Residual Plot")
+```
+
+\pagebreak
+
+# Regression Model Matrix
+This matrix provides a visual representation of the pivotal roles played by ResearchScore, CitationsScore, and TeachingScore in shaping the OverallScore. It demonstrates that these three variables, ResearchScore, CitationsScore, and TeachingScore, exert a significant and central influence on determining the OverallScore. In essence, changes or variations in these factors have a substantial impact on driving changes in the OverallScore. They are the primary factors that mold and shape the final rating.
+
+Furthermore, the matrix also illustrates that IndustryIncomeScore and InternationalOutlookScore contribute positively to OverallScores, meaning that higher values of these variables are associated with higher OverallScores. However, it's important to note that their influence appears to be somewhat scattered or less central compared to ResearchScore, CitationsScore, and TeachingScore. While these two variables contribute positively to the OverallScore, their effects may vary more widely or be less consistent compared to the more dominant variables, and this variability is visually represented in the matrix.
+
+```{r}
+numeric_columns = c("OverAllScore","TeachingScore", "ResearchScore", 
+                     "CitationsScore", "IndustryIncomeScore", 
+                     "InternationalOutlookScore")
+
+numeric_var = df[, numeric_columns]
+
+color_palette = colorRampPalette(c("yellow2", "magenta3"))(50)
+
+pairs(numeric_var, col = color_palette[cut(df$OverAllScore, 50)],
+      pch = 20, main = "Scatterplot Matrix (Color Gradient by Overall Score)")
+```
+
+\pagebreak
+
+# Model Corrplot
+TeachingScore, ResearchScore, and CitationsScore play a particularly influential role in determining a higher overall score when compared to the other variables. This means that these three factors have a more pronounced impact on the overall performance or rating being assessed. In other words, changes or improvements in TeachingScore, ResearchScore, or CitationsScore are more likely to result in a noticeable increase in the overall score, as opposed to changes in the other variables, which may not have as strong or direct an effect on the overall rating. These three factors are key drivers or significant contributors to achieving a higher overall evaluation or score in the context being analyzed.
+
+```{r, message=FALSE}
+library(corrplot)
+c = cor(numeric_var)
+corrplot(c)
+```
+
+\pagebreak
+
+# Model Scatterplots vs. Overall Score
+This R code snippet is creating a grid of five scatter plots, arranged in a 2x3 grid format, using the "par" function to set the layout. Each scatter plot examines the relationship between the "Overall Score" and one of five different variables: "Teaching Score," "Research Score," "Citations Score," "Industry Income Score," and "International Outlook Score."
+
+For each plot, the x-axis represents the specific variable (e.g., Teaching Score), and the y-axis represents the Overall Score. The data for these plots is sourced from a dataframe named "df." Each scatter plot is colored differently to distinguish between them, with labels indicating the variable being plotted. These plots allow for visual exploration of how each of these individual factors relates to the overall score, which can help in understanding the influence of each variable on the overall performance score.
+
+```{r}
+par(mfrow = c(2, 3))
+plot(OverAllScore ~ TeachingScore,xlab = "Teaching Score", ylab = "Overall Score", data = df, col = 'forestgreen', main = "Teaching Score")
+plot(OverAllScore ~ ResearchScore,xlab = "Research Score", ylab = "Overall Score", data = df, col = 'red4', main = "Research Score")
+plot(OverAllScore ~ CitationsScore,xlab = "Citations Score", ylab = "Overall Score", data = df, col = 'blue4', main = "Citations Score")
+plot(OverAllScore ~ IndustryIncomeScore,xlab = "Industry Income Score", ylab = "Overall Score", data = df, col = 'magenta3', main = "Industry Income Score")
+plot(OverAllScore ~ InternationalOutlookScore,xlab = "International Outlook Score", ylab = "Overall Score", data = df, col = 'orange2', main = "International Outlook Score")
+
+```
+
+\pagebreak
+
+# Validation of Business School Dean's Claimed Score using Multiple Regression
+We first check if the claimed score of 60 falls within the prediction interval. If it lies outside this interval, it suggests that a score of 60 is unlikely according to our model, and the claim may be rejected. Our project focused on a scenario involving a business school dean, specifically examining data from index 194, University of Miami, in our dataset. To predict the university's Overall Score, we used a multiple regression equation that considered the influence of five critical factors: ResearchScore, CitationsScore, TeachingScore, InternationalOutlookScore, and IndustryIncomeScore. Utilizing the coefficients obtained from this analysis, we estimated the Overall Score to be 52.32. This estimated value is very close to the originally provided score of 54.6, with minor variations due to factors like insignificant variables and rounding.
+
+```{r}
+prediction = predict(reg, newdata = df[194, ], interval = "prediction", level = 0.95)
+prediction
+
+```
+
+# Testing the Impact of International Students on Teaching Scores
+The simple linear regression equation describing the relationship between TeachingScore and InterStudent is given by:
+$$TeachingScore=24.0515+29.2943*InterStudent$$
+The coefficient for 'InterStudent' is statistically significant with an estimate of 29.2943 and a p-value of 1.057362e-59. This suggests a strong positive relationship: for each unit increase in 'InterStudent', the 'TeachingScore' increases by approximately 29.2943 units, on average. Given the low p-value, there is strong evidence to suggest that International Students have a significant relationship on Teaching Scores.
+
+```{r}
+regsimple = lm(TeachingScore ~ InterStudent, data = df)
+
+plot(TeachingScore ~ InterStudent, xlab = "International Student", ylab = "Teaching Score", data = df, col = 'forestgreen')
+abline(regsimple, col="red3", lwd = 3)
+```
+
+
+\pagebreak
+
+# Conclusion:
+
+This analysis highlights the pivotal roles of ResearchScore, CitationsScore, and TeachingScore in shaping OverallScore, shedding light on the multi-faceted determinants of university performance. ResearchScore exhibited a robust positive relationship, with each unit increase correlating to approximately 0.3165 units higher OverallScore, emphasizing the significance of strong research programs. Similarly, CitationsScore played a key role, showing that a one-unit increase corresponds to an approximate 0.3234 unit rise in OverallScore, emphasizing the importance of research impact. TeachingScore demonstrated a strong positive association, with a one-unit increase leading to approximately 0.3159 units higher OverallScore, highlighting the critical role of quality teaching. While IndustryIncomeScore had a modest negative impact, balancing industry collaborations with academic rigor remains essential. The findings offer actionable insights for university administrators and policymakers to strategically allocate resources, foster research excellence, and enhance teaching quality. Recognizing the significance of these scores is vital for advancing academic excellence in higher education institutions
